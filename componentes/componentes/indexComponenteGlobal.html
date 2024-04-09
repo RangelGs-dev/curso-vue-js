@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{mensagem}}</p>
+      <botao-contador></botao-contador>
+    </div>
+
+    <script>
+      //Componente global
+      Vue.component("BotaoContador", {
+        //Pode se usar a sintaxe do ES6 data(){}
+        //Deixa de ser uma propriedade e passa a ser um metódo retornando um obj.
+        data: function () {
+          return {
+            mensagem: "Isso",
+            total: 0,
+          };
+        },
+        template: `<button v-on:click="total++">Conta: {{total}}</button>`,
+        methods: {
+          mostrarConsole() {
+            console.log("Ativou!");
+          }
+        }
+      });
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          mensagem: "Isso",
+        },
+      });
+    </script>
+  </body>
+</html>

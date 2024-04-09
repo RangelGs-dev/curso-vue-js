@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>Props</title>
+  </head>
+  <body>
+
+    <div id="appA">
+      <meu-componente></meu-componente>
+    </div>
+  
+    <div id="appB">
+      <meu-componente></meu-componente>
+    </div>
+  
+    <script>
+      // Componente sem usar função para data
+      const MeuComponente = {
+        data() {
+          return {
+            mensagemA: "Componente A"
+          };
+        },
+        methods: {
+          alterarMensagemA() {
+            this.mensagemA = "Nova Mensagem A";
+          }
+        },
+        template: '<div><p>{{ mensagemA }}</p><button @click="alterarMensagemA">Alterar Mensagem A</button></div>'
+      };
+  
+      // Registrando o componente globalmente
+      Vue.component('meu-componente', MeuComponente);
+  
+      // Instâncias Vue
+      new Vue({
+        el: '#appA',
+      });
+  
+      new Vue({
+        el: '#appB',
+      });
+    </script>
+  </body>
+</html>

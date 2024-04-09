@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>
+    <title>V-bind</title>
+</head>
+<body>
+  <div id="app">
+    <a v-bind:href="link">Link do Google</a>
+    <p v-bind:class="cor">Texto</p>
+    <p v-bind:class="comprou ? liberar : naoLiberar">O cliente comprou?</p>
+  </div>
+
+  <script>
+    // Posso utilizar : para definir uma diretiva v-bind
+    // Classe não tem ordem de prioridade
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        link: "https://www.google.com",
+        cor: "azul",
+        liberar: "verde",
+        naoLiberar: "Vermelho",
+        comprou: false,
+      }
+    })
+  </script>
+</body>
+</html>

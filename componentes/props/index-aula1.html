@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>Class e Style</title>
+  </head>
+  <body>
+    <div id="app">
+      <lista-produtos v-bind:frutas="listas" titulo="Esse é um titulo"></lista-produtos>
+      <teste v-bind:itemss="items"></teste>
+    </div>
+    
+    <script type="module">
+      const ItemProduto = {
+        name: "ItemProduto",
+        props: ["nomeFruta"],
+        template: `
+        <li>
+          <h2>{{nomeFruta}}</h2>
+          Esse é o nome: {{nomeFruta}}
+        </li>
+        `
+      }
+
+      const ListaProdutos = {
+        name: "ListaProdutos",
+        props: ["frutas", "titulo"],
+        components: {
+          ItemProduto
+        },
+        template: `
+        <ul>
+          <h1>{{titulo}}</h1>
+          {{frutas}}
+          <item-produto 
+            v-for="fruta, index in frutas"
+            :key="fruta + index"
+            v-bind:nomeFruta="fruta"
+          ></item-produto>
+        </ul>
+        `,        
+      }
+
+      const Teste = {
+        name: "Teste",
+        props: ["itemss"],
+        template: `<div><a v-for="item in itemss">{{item}}</a></div>`
+      }
+
+      const app = new Vue({
+        el: "#app",
+        data: {
+          listas: ['Banana', 'Laranja', 'Uva'],
+          items: ['item1', 'item2'],
+        },
+        components:{
+          ListaProdutos, Teste
+        }
+      })
+    </script>
+  </body>
+</html>

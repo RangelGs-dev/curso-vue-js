@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>V-model</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model.lazy="nome" /> <br />
+      <input v-bind:value="email" /> <br /> <br />
+
+      <input v-model.trim="contato" /> <br />
+      {{contato}}
+
+      <br />
+
+      <input type="text" v-model.number="ano" /> <br />
+      {{ano}}
+
+      <input type="checkbox" v-model="receberEmail" id="receberEmail" />
+      <label for="receberEmail">Receber email</label>
+      {{receberEmail}}
+
+      <p>{{nome}}</p>
+      <p>{{email}}</p>
+
+      <div>
+        <input type="radio" name="cor" id="azul" v-model="cor" value="Azul" />
+        <label for="azul">Azul</label>
+
+        <input
+          type="radio"
+          name="cor"
+          id="vermelho"
+          v-model="cor"
+          value="Vermelho"
+        />
+        <label for="vermelho">Vermelho</label>
+
+        <input type="radio" name="cor" id="verde" v-model="cor" value="Verde" />
+        <label for="verde">Verde</label>
+      </div>
+      {{cor}}
+      <div>
+        <select name="frutas" id="frutas" v-model="fruta">
+          <option disabled value="">Selecione uma fruta</option>
+          <option value="banana">Banana</option>
+          <option value="morango">Morango</option>
+          <option value="uva">Uva</option>
+          <option value="manga">Manga</option>
+        </select>
+        {{fruta}}
+      </div>
+    </div>
+
+    <script lang="vue">
+      const app = new Vue({
+        el: "#app",
+        data: {
+          contato: "",
+          nome: "Rangel",
+          email: "rgs@gmail.com",
+          receberEmail: "",
+          cor: "",
+          fruta: "",
+          ano: 0,
+        }
+      });
+    </script>
+  </body>
+</html>

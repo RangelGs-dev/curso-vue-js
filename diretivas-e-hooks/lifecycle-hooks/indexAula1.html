@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>lifecycle hooks</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{mensagem}}</p>
+      <div>{{github}}</div>
+      {{github}}
+      <button v-on:click="puxarGithub">Puxar</button>
+    </div>
+
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          mensagem: "Essa é uma mensagem.",
+          github: null,
+        },
+        methods: {
+          puxarGithub() {
+            fetch('https://api.github.com/users/RangelGs-dev')
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                this.github = data;
+              })
+          }
+        },
+        beforeCreate() {
+          console.log(this.mensagem);
+        },
+        created() {
+          this.puxarGithub();
+          console.log(this.mensagem);
+          console.log("Elemento:", this.$el);
+        },
+        beforeMount() {
+          console.log("BeforeMount:", this.mensagem);
+          console.log("Elemento:", this.$el);
+        },
+        mounted() {
+          console.log("Elemento:", this.$el);
+        }
+      });
+    </script>
+    <style>
+      body {
+        height: 2000px;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>V-If</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <template v-if="logado">
+        <p>Usuario logado</p>
+        <button @click="logado = false">logout</button>
+      </template>
+      <template v-else="logado">
+        <p>Usuario deslogado</p>
+        <button @click="logado = true">login</button>
+      </template>
+      <p v-if="logado === 1">Usuario logado 1</p>
+      <p v-else-if="logado === 2">Usuario logado 2</p> -->
+      <p v-if="logado">O usuario está logado.</p>
+      <p v-show="logado">O usuario está logado.</p>
+    </div>
+
+    
+    <script>
+      const vm = new  Vue({
+        el: "#app",
+        data: {
+          logado: false,
+        }
+      })
+    </script>
+  </body>
+</html>

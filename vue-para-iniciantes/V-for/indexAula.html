@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>V-On</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <ul>
+        <li v-for="(valor, key) in estados">
+          <p>{{valor.populacao}}</p>
+          <p>{{valor.nome}}</p>
+        </li>
+
+        <div v-for="n in 10">
+          {{n}}
+        </div>
+      </ul> -->
+      <ul>
+        <li v-for="item in lista">{{item}}</li>
+      </ul>
+      <button v-on:click="removerItem">Remover</button>
+      <button v-on:click="adicionarItem">Adicionar</button>
+      <button v-on:click="modificarItem">Modificar</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          lista: ["Item 1", "Item 2", "Item 3"]
+          // estados: {
+          //   sp: {
+          //     populacao: "45 milhões",
+          //     nome: "São Paulo"
+          //   },
+          //   mg: {
+          //     populacao: "21 milhões",
+          //     nome: "Minas Gerais"
+          //   },
+          //   rj: {
+          //     populacao: "17 milhões",
+          //     nome: "Rio de Janeiro"
+          //   }
+          // }  
+        },
+        methods: {
+          removerItem() {
+            this.lista.pop()
+          },
+          adicionarItem() {
+            this.lista.push(`Item ${this.lista.length + 1}`)
+          },
+          modificarItem() {
+            this.$set(this.lista, 0, "Banana"); //Para obter reatividade
+            //this.lista[0] = "Banana";
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

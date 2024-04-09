@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>V-model</title>
+  </head>
+  <body>
+    <!-- 
+      1 - Crie um criador de botões.
+
+      O usuário poderá definir:
+      width,
+      height,
+      font-size,
+      font-family,
+      text-align,
+      background,
+      color,
+      border-radius,
+
+      As escolhas serão feitas em campos de
+      formulário. Cada escolha deverá ser 
+      refletida em um elemento (o botão).
+
+
+      2 - Crie um formulário com, nome, email, telefone e mensagem.
+      Ao clicar em enviar, as informações preenchidas no formulário
+      devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+    -->
+
+    <div id="app">
+      <input type="color" v-model="btn.background" />
+      <label for="width">Width</label>
+      <input id="width" type="text" v-model="btn.width" />
+      <label for="height">Height</label>
+      <input id="height" type="text" v-model="btn.height" />
+      <label for="fontSize">fontSize</label>
+      <input id="fontSize" type="text" v-model="btn.fontSize" />
+      <label for="fontFamily">fontSize</label>
+      <input id="fontFamily" type="text" v-model="btn.fontFamily" />
+      {{btn.background}}
+      <a v-bind:style="btn" href="">Clique Aqui</a>
+    </div>
+
+    <script lang="vue">
+      const app = new Vue({
+        el: "#app",
+        data: {
+          btn: {
+            background: "#000",
+            width: "0px",
+            height: "0px",
+            fontSize: "20px",
+            fontFamily: "monospace",
+          }
+        }
+      });
+    </script>
+    <style>
+      label {
+        display: block;
+      }
+      a {
+        margin-top: 100px;
+        display: block;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+  <body>
+    <div id="app">
+      <componente-local></componente-local>
+      <componente-local2></componente-local2>
+    </div>
+
+    <script>
+      const ComponenteLocal = {
+        name: "ComponenteLocal",
+        template: `
+          <div>
+            <p>Componente Local</p>
+            <componente-global></componente-global>
+          </div>
+        `,
+      };
+
+      const ComponenteLocal2 = {
+        name: "ComponenteLocal2",
+        data() {
+          return {
+            contar: 2,
+          }
+        },
+        template: `
+          <div>
+            <p>Componente Local {{contarDobro}}</p>
+            <p>Segundo {{contar}}</p>
+          </div>
+        `,
+        //No template só podemos ter um elemento
+        computed: {
+          contarDobro() {
+            return this.contar *2
+          }
+        },
+      };
+
+      Vue.component("ComponenteGlobal", {
+        template: `<p>Isso é Global</p>`,
+      });
+
+      const vm = new Vue({
+        el: "#app",
+        components: {
+          //No ES6 pode ser utilizado somente a chave se a variavel foi identica
+          ComponenteLocal: ComponenteLocal,
+          ComponenteLocal2,
+        },
+      });
+      /*Forma complexa de dar manutenção
+      const vm = new Vue({
+        el:"#app",
+        components: {
+          ComponenteLocal: {
+            name: "ComponenteLocal",
+            template: `<p>Componente Local</p>`,
+          }
+        }
+      });
+      */
+    </script>
+  </body>
+</html>
